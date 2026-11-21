@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GTA VI Trophy Guide &amp; Tracker — Leonida Checklist</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="masthead">
+  <div class="masthead-inner">
+    <p class="kicker">Grand Theft Auto VI &middot; PlayStation 5 &middot; Offline guide</p>
+    <h1>GTA VI Trophy Guide <span class="amp">&amp;</span> Tracker</h1>
+    <p class="deck">Every one of the 55 official trophies, in your own words, with sources beside each guide. Check them off as you earn them — progress is saved in this browser, and it works with the network off.</p>
+    <div class="progress-wrap" aria-label="Overall progress">
+      <div class="progress-line"><span id="progressText">0 / 55 earned</span><span id="progressPct">0%</span></div>
+      <div class="progress-bar"><div id="progressFill" class="progress-fill" style="width:0%"></div></div>
+      <p class="grade-line" id="gradeLine">Platinum 0/1 &middot; Gold 0/2 &middot; Silver 0/6 &middot; Bronze 0/46</p>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="toolbar" aria-label="Tracker controls">
+    <div class="toolbar-row">
+      <label class="search-label">Search <input id="searchInput" type="search" placeholder="Trophy name or description…" autocomplete="off"></label>
+      <label class="select-label">Kind
+        <select id="kindFilter">
+          <option value="">All kinds</option>
+          <option>Story</option><option>Side strand</option><option>Money</option>
+          <option>Exploration</option><option>Activity</option><option>Combat</option>
+          <option>Collectible</option><option>Oddity</option><option>Completion</option>
+          <option>Platinum</option>
+        </select>
+      </label>
+      <label class="select-label">Show
+        <select id="stateFilter">
+          <option value="">All trophies</option>
+          <option value="earned">Earned only</option>
+          <option value="unearned">Unearned only</option>
+          <option value="missable">Missable only</option>
+        </select>
+      </label>
+      <label class="check-label"><input id="spoilerToggle" type="checkbox"> Spoiler-safe: hide story names until earned</label>
+    </div>
+    <div class="toolbar-row">
+      <nav class="tabs" aria-label="Guide sections">
+        <button class="tab active" data-view="checklist" type="button">Checklist</button>
+        <button class="tab" data-view="roadmap" type="button">Roadmap to Platinum</button>
+        <button class="tab" data-view="missables" type="button">Missables</button>
+        <button class="tab" data-view="nextup" type="button">Next Up Planner</button>
+      </nav>
+      <div class="toolbar-actions">
+        <button id="exportBtn" type="button">Export progress</button>
+        <button id="importBtn" type="button">Import progress</button>
+        <input id="importFile" type="file" accept="application/json,.json" hidden>
+        <button id="resetBtn" type="button">Reset</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="view-checklist" class="view active" aria-label="Trophy checklist">
+    <p class="view-note">55 trophies &middot; <strong id="earnedCount">13</strong> earned &middot; tap a card to open its numbered guide and sources. PSN counters sit on the cards that track a count.</p>
+    <div id="trophyGrid" class="trophy-grid"></div>
+    <p id="emptyNote" class="empty-note" hidden>No trophies match these filters.</p>
+  </section>
+
+  <section id="view-roadmap" class="view" aria-label="Roadmap to the platinum">
+    <p class="view-note">Built from the official descriptions: story chapters first, then stranger strands, then activities and counts, then money and robberies, then exploration and oddities, and finally the 100% cleanup that unlocks the platinum.</p>
+    <ol id="roadmapList" class="roadmap"></ol>
+  </section>
+
+  <section id="view-missables" class="view" aria-label="Missable trophies">
+    <p class="view-note"><strong id="missableCount">21</strong> trophies can be missed. Do them in the story flow, before the chapter or the moment passes. Every card below carries its warning and its sources.</p>
+    <div id="missableGrid" class="trophy-grid"></div>
+  </section>
+
+  <section id="view-nextup" class="view" aria-label="Next up planner">
+    <p class="view-note">The five trophies to chase next, in order — missable story beats first, then the counts closest to done, then the next roadmap step. The list updates as you tick trophies off.</p>
+    <ol id="nextUpList" class="nextup"></ol>
+  </section>
+
+  <footer class="colophon">
+    <p>Sources for the trophy list: Exophase and PSNProfiles, agreeing on every name, description and grade. Each guide below names its own sources beside it. No Rockstar logo, artwork or game screenshot is used anywhere in this guide.</p>
+    <p>Built for the make.fun bounty <strong>gta6-trophy-guide-01</strong> by @ajx. Static files only — no network requests at run time.</p>
+  </footer>
+</main>
+
+<div id="modalBackdrop" class="modal-backdrop" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button id="modalClose" class="modal-close" type="button" aria-label="Close guide">&times;</button>
+    <p class="modal-kind"><span id="modalGrade" class="grade-badge"></span> <span id="modalKind"></span></p>
+    <h2 id="modalTitle"></h2>
+    <p id="modalDesc" class="modal-desc"></p>
+    <p id="modalCounter" class="modal-counter" hidden></p>
+    <div id="modalMissable" class="missable-box" hidden><strong>⚠ Missable.</strong> <span id="modalMissableText"></span></div>
+    <h3>Guide</h3>
+    <ol id="modalSteps" class="guide-steps"></ol>
+    <p class="sources-line">Sources: <span id="modalSources"></span></p>
+    <div class="modal-actions">
+      <button id="modalEarnedBtn" type="button">Mark as earned</button>
+      <span id="modalEarnedState" class="earned-state"></span>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
